@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	
+	<!-- 登录相关功能 -->
+	<package name="main" namespace="/main" extends="struts-default">
+		<!-- 打开登录页面 -->
+		<action name="tologin">
+			<result>/WEB-INF/main/login.jsp</result>
+		</action>
+		<!-- 打开主页 -->
+		<action name="toindex">
+			<result>/WEB-INF/main/index.jsp</result>
+		</action>
+		<!-- 登录检查 -->
+		<action name="login" class="loginAction">
+			<!-- 重定向到主页 -->
+			<result type="redirectAction">
+				<!-- <param name="namespace">/main</param> -->
+				<param name="actionName">toindex</param>
+			</result>
+			<!-- 转发到login.jsp -->
+			<result name="error">
+				/WEB-INF/main/login.jsp
+			</result>
+		</action>
+		<!-- 生成验证码 -->
+		<action name="verifycode" class="verifyCodeAction">
+			<!-- 该Result可以输出二进制数据 -->
+			<result type="stream">
+				<!-- 告诉该Result要输出哪个属性的值 -->
+				<param name="inputName">imgStream</param>
+			</result>
+		</action>
+	</package>
+	
+	<!-- 资费模块 -->
+	<package name="cost" namespace="/cost" extends="json-default">
+		<!-- 打开增加页 -->
+		<action name="toadd" > 
+		<result>/WEB-INF/cost/add.jsp</result>
+		</action>
+		<action name="add" class="toAddAction"> 
+		<result type="redirectAction"><!-- 重定向 ，如果到jsp将会没有数据-->
+	    <param name="actionName">find</param>
+	    </result>
+		</action>
+		<!-- 检查资费名是否有效 -->
+		<action name="checkName" 
+			class="checkCostNameAction">
+			<result type="json">
+				<param name="includeProperties">name,pass</param>
+			</result>
+		</action>
+		<!-- 查询资费 -->
+		<action name="find" class="findCostAction">
+			<result>/WEB-INF/cost/find.jsp</result>
+		</action>
+		<!-- 打开修改资费页面 -->
+		<action name="toupdate"  class="toUpdateCostAction">
+			<result>/WEB-INF/cost/update.jsp</result>
+		</action>
+		<!-- 修改资费数据 -->
+		<action name="update"  class="updateCostAction">
+			<result type="redirectAction">
+				<param name="actionName">find</param>
+			</result>
+		</action>
+	    <action name="delete" class="deleteAction"> 
+		<result type="redirectAction"><!-- 重定向 ，如果到jsp将会没有数据-->
+	    <param name="actionName">find</param>
+	    </result>
+		</action>
+	</package>
+	
+</struts>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

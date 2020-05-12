@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>sshctoss</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 配置Filter以推迟session关闭的时机,
+  	为了可以正常使用延迟加载的方法.该Filter
+  	必须声明在Struts2的Filter之前. -->
+  <filter>
+  	<filter-name>opensession</filter-name>
+  	<filter-class>
+  		org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+  	</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>opensession</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 配置Struts2前端控制器 -->
+  <filter>
+  	<filter-name>mvc</filter-name>
+  	<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>mvc</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 配置监听器,让它在tomcat启动时自动创建Spring容器. -->
+  <listener>
+  	<listener-class>
+  		org.springframework.web.context.ContextLoaderListener
+  	</listener-class>
+  </listener>
+  
+  <!-- 声明Spring配置文件的位置 -->
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>classpath:spring-*.xml</param-value>
+  </context-param>  
+  
+</web-app>
+
+
+
+
+
+
+
+
+

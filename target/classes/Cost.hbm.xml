@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.tedu.entity.Cost" table="cost">
+     <id name="costId" column="cost_id" type="int">
+     	<generator class="native">
+     		<param name="sequence">cost_seq</param>
+     	</generator>
+     </id>
+     <property name="name" 			column="name" 			type="string"></property>
+     <property name="baseDuration" 	column="base_duration"	type="integer"></property>
+     <property name="baseCost" 		column="base_cost" 		type="double"></property>
+     <property name="unitCost" 		column="unit_cost" 		type="double"></property>
+     <property name="status" 	    column="status" 		    type="string"></property>
+     <property name="descr" 	        column="descr" 			type="string"></property>
+     <property name="creatime" 		column="creatime" 		type="timestamp"></property>
+     <property name="startime" 		column="startime" 		type="timestamp"></property>
+     <property name="costType" 		column="cost_type" 		type="string"></property>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+

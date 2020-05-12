@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.tedu.entity.Admin" 
+		table="admin_info">
+	      <id name="adminId" column="admin_id" type="int">
+	      	<generator class="native">
+	      		<param name="sequence">admin_seq_lhh</param>
+	      	</generator>
+	      </id>
+	      <property name="adminCode" 	column="admin_code" type="string"></property>
+	      <property name="password" 	column="password" 	type="string"></property>
+	      <property name="name" 		column="name" 		type="string"></property>
+	      <property name="email" 		column="email" 		type="string"></property>
+	      <property name="telephone" 	column="telephone" 	type="string"></property>
+	      <property name="enrolldate" 	column="enrolldate" type="timestamp"></property>
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
